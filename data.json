@@ -1,0 +1,42 @@
+{
+  "widget": {
+    "id": "gardening-readiness",
+    "version": "1.1"
+  },
+
+  "status": {
+    "level": "yellow",
+    "title": "Conditions improving",
+    "message": "Recent weather suggests soil is warming, but frost risk remains."
+  },
+
+  "location": {
+    "name": "Saskatchewan",
+    "scope": "provincial"
+  },
+
+  "timing": {
+    "last_updated": "2026-04-09",
+    "data_window": "Past 5 days"
+  },
+
+  "metrics": [
+    {
+      "id": "air_temp_avg_5d",
+      "label": "5‑day average air temperature",
+      "value": 6.2,
+      "unit": "°C",
+      "interpretation": "Approaching typical soil warming thresholds"
+    },
+    {
+      "id": "precip_7d",
+      "label": "Precipitation (past 7 days)",
+      "value": 12,
+      "unit": "mm",
+      "interpretation": "Soil likely workable in well‑drained areas"
+    }
+  ],
+
+  "context": {
+    "notes": [
+      "Air temperature trends are used as a proxy for soil warming.",
