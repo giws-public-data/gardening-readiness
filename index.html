@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Gardening Readiness — GIWS</title>
+
+  <style>
+    :root {
+      --red: #c0392b;
+      --yellow: #f1c40f;
+      --green: #27ae60;
+      --text: #2c3e50;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --bg: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.4;
+    }
+
+    .widget {
+      max-width: 640px;
+      padding: 1rem;
+      margin: 0 auto;
+    }
+
+    header h1 {
+      font-size: 1.25rem;
+      margin: 0 0 0.25rem 0;
+    }
+
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .status {
+      margin: 1rem 0;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-left: 0.5rem solid var(--border);
+      border-radius: 4px;
+    }
+
+    .status.red {
+      border-left-color: var(--red);
+    }
+
+    .status.yellow {
+      border-left-color: var(--yellow);
+    }
+
+    .status.green {
+      border-left-color: var(--green);
+    }
+
+    .status strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .status p {
+      margin: 0;
+    }
+
+    .meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    details {
+      border-top: 1px solid var(--border);
+      padding-top: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    footer {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="widget">
+
+    <header>
+      <h1>Gardening Readiness</h1>
+      <p>Saskatchewan – current conditions</p>
+    </header>
+
+    <!-- Status block -->
+    <section
+      id="status"
+      class="status yellow"
+      aria-live="polite"
+    >
+      <strong id="status-title">
+        Conditions improving
+      </strong>
+      <p id="status-message">
+        Recent weather suggests soil is warming, but frost risk remains.
+      </p>
+    </section>
+
+    <!-- Metadata -->
+    <div class="meta">
+      Last updated:
+      <span id="last-updated">
+        April 9, 2026
+      </span>
+    </div>
+
+    <!-- Explanation / caveats -->
+    <details>
+      <summary>How to interpret this</summary>
+      <p>
+        This widget summarizes recent weather conditions associated with
+        spring gardening readiness. It reflects general trends rather than
+        site‑specific soil conditions.
+      </p>
+      <p>
+        Conditions can vary locally due to soil type, drainage, snow cover,
+        and microclimate.
+      </p>
+    </details>
+
+    <!-- Attribution -->
+    <footer>
+      Produced by the
+      <strong>Global Institute for Water Security</strong>,
+      University of Saskatchewan
+    </footer>
+
+  </div>
+
+  <!-- Placeholder for future JS -->
+  <!--
+  <script src="ript>
+  -->
+</body>
+</html>
