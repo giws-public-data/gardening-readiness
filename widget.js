@@ -113,18 +113,18 @@
   }
 
   function renderContext(data) {
-  if (!data.context || !Array.isArray(data.context.notes)) return;
-
-  const details = document.querySelector("details");
-  if (!details) return;
-
-  details.innerHTML = "<summary>How to interpret this</summary>";
-
-  data.context.notes.forEach(noteText => {
-    const p = document.createElement("p");
-    p.textContent = noteText;
-    details.appendChild(p);
-  });
-}
+    if (!data.context || !Array.isArray(data.context.notes)) return;
+  
+    const container = document.querySelector("#context details");
+    if (!container) return;
+  
+    container.innerHTML = "<summary>How to interpret this</summary>";
+  
+    data.context.notes.forEach(noteText => {
+      const p = document.createElement("p");
+      p.textContent = noteText;
+      container.appendChild(p);
+    });
+  }
 
 })();
