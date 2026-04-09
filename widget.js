@@ -12,6 +12,7 @@
       renderStatus(data);
       renderTiming(data);
       renderMetrics(data);
+      renderContext(data);
     })
     .catch(error => {
       renderError(error);
@@ -47,51 +48,41 @@
 
   function renderMetrics(data) {
     if (!Array.isArray(data.metrics) || data.metrics.length === 0) return;
-
-    // Create container if it doesn't already exist
-    let metricsContainer = document.getElementById("metrics");
-    if (!metricsContainer) {
-      metricsContainer = document.createElement("section");
-      metricsContainer.id = "metrics";
-
-      const details = document.createElement("details");
-      const summary = document.createElement("summary");
-      summary.textContent = "Supporting data";
-      details.appendChild(summary);
-
-      const list = document.createElement("ul");
-      details.appendChild(list);
-
-      metricsContainer.appendChild(details);
-
-      const widget = document.querySelector(".widget");
-      widget.insertBefore(metricsContainer, widget.querySelector("footer"));
-    }
-
-    const list = metricsContainer.querySelector("ul");
-    list.innerHTML = "";
-
+  
+    const container = document.getElementById("metrics");
+    if (!container) return;
+  
+    const details = document.createElement("details");
+    const summary = document.createElement("summary");
+    summary.textContent = "Supporting data";
+    details.appendChild(summary);
+  
+    const list = document.createElement("ul");
+  
     data.metrics.forEach(metric => {
       const item = document.createElement("li");
-
+  
       const label = document.createElement("strong");
-      label.textContent = metric.label + ": ";
-
+      label.textContent = `${metric.label}: `;
+  
       const value = document.createElement("span");
       value.textContent = formatValue(metric);
-
+  
       item.appendChild(label);
       item.appendChild(value);
-
+  
       if (metric.interpretation) {
         const note = document.createElement("div");
         note.className = "metric-note";
         note.textContent = metric.interpretation;
         item.appendChild(note);
       }
-
+  
       list.appendChild(item);
     });
+  
+    details.appendChild(list);
+    container.appendChild(details);
   }
 
   function formatValue(metric) {
@@ -120,4 +111,20 @@
     messageEl.textContent =
       "Current conditions could not be loaded. Please try again later.";
   }
+
+  function renderContext(data) {
+  if (!data.context || !Array.isArray(data.context.notes)) return;
+
+  const details = document.querySelector("details");
+  if (!details) return;
+
+  details.innerHTML = "<summary>How to interpret this</summary>";
+
+  data.context.notes.forEach(noteText => {
+    const p = document.createElement("p");
+    p.textContent = noteText;
+    details.appendChild(p);
+  });
+}
+
 })();
