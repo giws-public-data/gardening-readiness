@@ -12,7 +12,6 @@
       renderStatus(data);
       renderTiming(data);
       renderMetrics(data);
-      renderContext(data);
     })
     .catch(error => {
       renderError(error);
@@ -48,41 +47,34 @@
 
   function renderMetrics(data) {
     if (!Array.isArray(data.metrics) || data.metrics.length === 0) return;
-  
+
     const container = document.getElementById("metrics");
     if (!container) return;
-  
-    const details = document.createElement("details");
-    const summary = document.createElement("summary");
-    summary.textContent = "Supporting data";
-    details.appendChild(summary);
-  
-    const list = document.createElement("ul");
-  
+
+    container.innerHTML = ""; // clear placeholder
+
+    const grid = document.createElement("div");
+    grid.className = "metric-grid";
+
     data.metrics.forEach(metric => {
-      const item = document.createElement("li");
-  
-      const label = document.createElement("strong");
-      label.textContent = `${metric.label}: `;
-  
-      const value = document.createElement("span");
+      const item = document.createElement("div");
+      item.className = "metric";
+
+      const value = document.createElement("div");
+      value.className = "metric-value";
       value.textContent = formatValue(metric);
-  
-      item.appendChild(label);
+
+      const label = document.createElement("div");
+      label.className = "metric-label";
+      label.textContent = metric.label;
+
       item.appendChild(value);
-  
-      if (metric.interpretation) {
-        const note = document.createElement("div");
-        note.className = "metric-note";
-        note.textContent = metric.interpretation;
-        item.appendChild(note);
-      }
-  
-      list.appendChild(item);
+      item.appendChild(label);
+
+      grid.appendChild(item);
     });
-  
-    details.appendChild(list);
-    container.appendChild(details);
+
+    container.appendChild(grid);
   }
 
   function formatValue(metric) {
@@ -111,20 +103,4 @@
     messageEl.textContent =
       "Current conditions could not be loaded. Please try again later.";
   }
-
-  function renderContext(data) {
-    if (!data.context || !Array.isArray(data.context.notes)) return;
-  
-    const container = document.querySelector("#context details");
-    if (!container) return;
-  
-    container.innerHTML = "<summary>How to interpret this</summary>";
-  
-    data.context.notes.forEach(noteText => {
-      const p = document.createElement("p");
-      p.textContent = noteText;
-      container.appendChild(p);
-    });
-  }
-
 })();
