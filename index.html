@@ -118,6 +118,43 @@
       font-size: 0.8rem;
       color: var(--muted);
     }
+
+    .metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1rem 0;
+  text-align: center;
+    }
+    
+    .metric {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .metric-value {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    
+    .metric-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+    
+    /* Mobile: stack metrics */
+    @media (max-width: 600px) {
+      .metric-grid {
+        grid-template-columns: 1fr;
+        text-align: left;
+      }
+    
+      .metric {
+        align-items: flex-start;
+      }
+    }
   </style>
 </head>
 
