@@ -1,6 +1,20 @@
 (function () {
   const DATA_URL = "data.json";
-
+  const METRIC_PRESENTATION = {
+    precip_7d: {
+      icon: "🌧️",
+      shortLabel: "Precipitation (7 days)"
+    },
+    air_temp_avg_5d: {
+      icon: "🌡️",
+      shortLabel: "Avg air temp (5 days)"
+    },
+    soil_water_state: {
+      icon: "💧",
+      shortLabel: "Soil water state"
+    }
+  };
+  
   fetch(DATA_URL)
     .then(response => {
       if (!response.ok) {
@@ -47,35 +61,40 @@
 
   function renderMetrics(data) {
     if (!Array.isArray(data.metrics) || data.metrics.length === 0) return;
-
+  
     const container = document.getElementById("metrics");
     if (!container) return;
-
-    container.innerHTML = ""; // clear placeholder
-
+  
+    container.innerHTML = "";
+  
     const grid = document.createElement("div");
     grid.className = "metric-grid";
-
+  
     data.metrics.forEach(metric => {
+      const presentation = METRIC_PRESENTATION[metric.id] || {};
+  
       const item = document.createElement("div");
       item.className = "metric";
-
+  
       const value = document.createElement("div");
       value.className = "metric-value";
-      value.textContent = formatValue(metric);
-
+  
+      // Icon + numeric value
+      value.textContent =
+        `${presentation.icon ? presentation.icon + " " : ""}${formatValue(metric)}`;
+  
       const label = document.createElement("div");
       label.className = "metric-label";
-      label.textContent = metric.label;
-
+      label.textContent = presentation.shortLabel || metric.label;
+  
       item.appendChild(value);
       item.appendChild(label);
-
       grid.appendChild(item);
     });
-
+  
     container.appendChild(grid);
   }
+
 
   function formatValue(metric) {
     if (metric.value === undefined || metric.value === null) {
