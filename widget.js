@@ -3,15 +3,15 @@
   const METRIC_PRESENTATION = {
     precip_7d: {
       icon: "🌧️",
-      shortLabel: "Precipitation (7 days)"
+      shortLabel: "Precip.<br />(7 days)"
     },
     air_temp_avg_5d: {
       icon: "🌡️",
-      shortLabel: "Avg air temp (5 days)"
+      shortLabel: "Avg temp.<br />(5 days)"
     },
     soil_water_state: {
       icon: "💧",
-      shortLabel: "Soil water state"
+      shortLabel: "Soil water<br />state"
     }
   };
   
